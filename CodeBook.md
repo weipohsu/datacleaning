@@ -32,15 +32,15 @@ The data is in https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUC
 ### 3. Extracts only the measurements on the mean and standard deviation for each measurement. 
 * Use the grep function to extract the measurements with colum names ends with mean() or std(). 
 * Also preserve subject and activity colume
-dataset <- dataset[grep("(subject|activity|mean\\(\\)|std\\(\\))",colnames(dataset))]
+* dataset <- dataset[grep("(subject|activity|mean\\(\\)|std\\(\\))",colnames(dataset))]
 
 ### 4. Uses descriptive activity names to name the activities in the data set
 * Use factor() function to transfer the numerical coded activity into descriptive names
-dataset$activity <- factor(dataset$activity,labels=activities$V2)
+* dataset$activity <- factor(dataset$activity,labels=activities$V2)
 
 ### 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 * use melt() and dcast() functions (in reshape2 package) to create mean for each aubject, activity and valiables. 
-ds <- melt(dataset,id=c("subject","activity"))
-tidy_dataset <- dcast(ds,subject+activity ~ variable,mean)
+* ds <- melt(dataset,id=c("subject","activity"))
+* tidy_dataset <- dcast(ds,subject+activity ~ variable,mean)
 
 ### 6. Write out the dataset to a file tidy_dataset.txt
