@@ -1,9 +1,9 @@
-### The scripy run_analysis.R performs the following steps to create a tidy data set as specified
+### The script run_analysis.R performs the following steps to create a tidy data set as specified
 ### in the project instructions.
 
 The data is in https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 
-### The script should be run in teh working directory with the following directory structure:
+### The script should be run in the working directory with the following directory structure:
 * features.txt
 * activity_labels.txt
 * ./train/x_train.txt
@@ -21,20 +21,20 @@ The data is in https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUC
 ### Load training datasets
 ### Load test datasets
 
-### 4. Appropriately labels the data set with descriptive activity names based on features and activities
+### 1. Appropriately labels the data set with descriptive activity names based on features and activities
 * USe the column names in the features dataset to rename the colume names for the x_ tables
 * Also give descriptive names to the subject datasets and y_ datasets
 
-### 1. Merges the training and the test sets to create one data set.
+### 2. Merges the training and the test sets to create one data set.
 * Merge the subject dataset and y_ datasets onto x_ datasets using cbind() function
 * Merge the train dataset and test dataset using rbind() function
 
-### 2. Extracts only the measurements on the mean and standard deviation for each measurement. 
+### 3. Extracts only the measurements on the mean and standard deviation for each measurement. 
 * Use the grep function to extract the measurements with colum names ends with mean() or std(). 
 * Also preserve subject and activity colume
 dataset <- dataset[grep("(subject|activity|mean\\(\\)|std\\(\\))",colnames(dataset))]
 
-### 3. Uses descriptive activity names to name the activities in the data set
+### 4. Uses descriptive activity names to name the activities in the data set
 * Use factor() function to transfer the numerical coded activity into descriptive names
 dataset$activity <- factor(dataset$activity,labels=activities$V2)
 
@@ -43,4 +43,4 @@ dataset$activity <- factor(dataset$activity,labels=activities$V2)
 ds <- melt(dataset,id=c("subject","activity"))
 tidy_dataset <- dcast(ds,subject+activity ~ variable,mean)
 
-### Write out the dataset to a file tidy_dataset.txt
+### 6. Write out the dataset to a file tidy_dataset.txt
