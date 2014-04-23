@@ -47,4 +47,4 @@ ds <- melt(dataset,id=c("subject","activity"))
 tidy_dataset <- dcast(ds,subject+activity ~ variable,mean)
 
 ## Write out the dataset to a file
-write.table(tidy_dataset,file="tidy_dataset.csv")
+write.table(tidy_dataset,file="tidy_dataset.txt")
